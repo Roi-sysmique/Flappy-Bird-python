@@ -106,7 +106,7 @@ while running:
 game_over_surface = font.render(f"Game Over. Final Score: {score}", True, WHITE)
 SCREEN.blit(game_over_surface, (SCREEN_WIDTH // 2 - 150, SCREEN_HEIGHT // 2))
 pygame.display.update()
-pygame.time.delay(3000)  # Attend 3 secondes avant de fermer la fenêtre
+pygame.time.delay(2500)  # Attend 3 secondes avant de fermer la fenêtre
 
 pygame.quit()
 
