@@ -6,7 +6,7 @@ pygame.init()
 HEIGHT_SCREEN = 448
 WIDTH_SCREEN = 800
 game_run = True
-text_font = pygame.font.Font('FONT/flappy-font.ttf', 50)
+text_font = pygame.font.Font('flappy-font.ttf', 50)
 d = 0
 score = 0
 depassement = False
@@ -14,11 +14,11 @@ depassement = False
 # set the screen
 screen = pygame.display.set_mode((WIDTH_SCREEN, HEIGHT_SCREEN))
 pygame.display.set_caption('Flappy_Py')
-background = pygame.image.load("Graphics/background_flappy_bird.png")
-base = pygame.image.load('Graphics/base_flappy_bird.png')
-game_over = pygame.image.load('Graphics/gameover_flappy-bird.png')
+background = pygame.image.load("background_flappy_bird.png")
+base = pygame.image.load('base_flappy_bird.png')
+game_over = pygame.image.load('gameover_flappy-bird.png')
 game_over_rect = game_over.get_rect(center=(400, 224))
-button_start = pygame.image.load('Graphics/Start-button-sprite-flappy-bird.png')
+button_start = pygame.image.load('Start-button-sprite-flappy-bird.png')
 button_start_rect = button_start.get_rect(center=(400, 325))
 menu_surface = pygame.surface.Surface((300, 200))
 menu_surface_rect = menu_surface.get_rect(midtop=(game_over_rect.centerx, 175))
@@ -39,9 +39,9 @@ class Obstacle:
         self.obstaclex = 850
         self.obstacle1_y = random.randint(200, 335)
         self.obstacle2_y = self.obstacle1_y - 610
-        self.obstacle1 = pygame.image.load('Graphics/pipe-green 6.png').convert_alpha()
+        self.obstacle1 = pygame.image.load('pipe-green 6.png').convert_alpha()
         self.obstacle1_rect = self.obstacle1.get_rect(midtop=(self.obstaclex, self.obstacle1_y))
-        self.obstacle2 = pygame.image.load('Graphics/pipe-green 1.png').convert_alpha()
+        self.obstacle2 = pygame.image.load('pipe-green 1.png').convert_alpha()
         self.obstacle2_rect = self.obstacle2.get_rect(midtop=(self.obstaclex, self.obstacle2_y))
 
     def movement(self):
@@ -62,9 +62,9 @@ class Player:
         self.animate = 0
         self.angle = 0
         self.list_sprite = []
-        self.player1 = pygame.image.load('Player/bluebird-upflap.png')
-        self.player2 = pygame.image.load('Player/bluebird-flappy bird(2).png')
-        self.player3 = pygame.image.load('Player/bluebird-downflap.png')
+        self.player1 = pygame.image.load('bluebird-upflap.png')
+        self.player2 = pygame.image.load('bluebird-flappy bird(2).png')
+        self.player3 = pygame.image.load('bluebird-downflap.png')
         self.player_rect = self.player2.get_rect(center=(200, 224))
         self.list_sprite.append(self.player1)
         self.list_sprite.append(self.player2)
@@ -157,7 +157,7 @@ while True:
         if d == 100:
             d = 0
             obstacle.append(Obstacle(player.player_rect))
-        if player.player_rect.bottom >= 400:
+        if player.player_rect.bottom >= 400: 
             player.player_rect.bottom = 400
             player.angle = 0
         if base_rect.right <= 0:
@@ -170,6 +170,8 @@ while True:
             base_rect3.left = base_rect2.right
         if base_rect4.right <= 0:
             base_rect4.left = base_rect3.right
+        if player.player_rect.top <= -100:
+            game_run = False
         for i in obstacle:
             if i.obstacle1_rect.right <= -100:
                 obstacle.remove(i)
